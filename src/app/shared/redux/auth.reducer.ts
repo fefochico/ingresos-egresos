@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from "@ngrx/store";
 import { setUser, unSetUser } from './auth.actions';
-import { Usuario } from "../models/usuario";
+import { Usuario } from "../../models/usuario";
 
 export interface State{
     user: Usuario|null;

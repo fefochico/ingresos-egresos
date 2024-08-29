@@ -15,7 +15,8 @@
               </thead>
 
               <tbody>
-                <tr  *ngFor="let item of ingresosEgresos | ordenIngreso">
+              @for (item of ingresosEgresos | ordenIngreso; track item) {
+                <tr>
                   <td>{{item.descripcion}}</td>
                   <td>{{item.cantidad | currency}}</td>
                   <td 
@@ -27,6 +28,7 @@
                     <i class="fa fa-trash"></i> Borrar
                   </button></td>
                 </tr>
+              }
               </tbody>
 
             </table>

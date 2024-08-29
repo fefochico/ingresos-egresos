@@ -1,16 +1,16 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Observable, Subscription, map } from 'rxjs';
 import { Usuario } from '../models/usuario';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Store } from '@ngrx/store';
 import { AppState } from '../app.reducer';
-import * as authActions from '../auth/auth.actions';
-import * as ingresoEgresoAccions from '../dashboard/pages/ingreso-egreso/ingreso-egreso.actions';
+import * as authActions from '../shared/redux/auth.actions';
+import * as ingresoEgresoAccions from '../shared/redux/ingreso-egreso.actions';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService implements OnDestroy{
   private _userSubcription!:Subscription;
   private _user: Usuario | null=null;
 
@@ -22,6 +22,13 @@ export class AuthService {
     private store: Store<AppState>,
     private afAuth: AngularFireAuth,
     private firestore: AngularFirestore) {}
+
+  ngOnDestroy(): void {
+    this._user=null;
+    this._userSubcription?.unsubscribe();
+    this.store.dispatch(authActions.unSetUser());
+    this.store.dispatch(ingresoEgresoAccions.unSetItem())
+  }
 
   async initAuthListener(){
     this.afAuth.authState.subscribe((fuser)=>{
@@ -36,7 +43,7 @@ export class AuthService {
         })
       }else{
         this._user=null;
-        this._userSubcription.unsubscribe();
+        this._userSubcription?.unsubscribe();
         this.store.dispatch(authActions.unSetUser());
       }
     })

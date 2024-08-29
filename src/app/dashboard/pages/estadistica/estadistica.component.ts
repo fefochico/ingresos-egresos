@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../../app.reducer';
 import { IngresoEgreso } from '../../../models/ingreso-egreso';
 import { ChartConfiguration } from 'chart.js';
+import { AppStateWithIngreso } from '../../../shared/redux/ingreso-egreso.reducer';
 
 @Component({
   selector: 'app-estadistica',
@@ -27,7 +27,7 @@ export class EstadisticaComponent implements OnInit{
     responsive: true
   };
 
-  constructor(private store: Store<AppState>){
+  constructor(private store: Store<AppStateWithIngreso>){
 
   }
   ngOnInit(): void {

@@ -5,7 +5,7 @@ import { IngresoEgresoService } from '../../../services/ingreso-egreso.service';
 import Swal from 'sweetalert2';
 import { AppState } from '../../../app.reducer';
 import { Store } from '@ngrx/store';
-import * as ui from '../../../shared/ui.actions';
+import * as ui from '../../../shared/redux/ui.actions';
 import { Subscription } from 'rxjs';
 
 @Component({

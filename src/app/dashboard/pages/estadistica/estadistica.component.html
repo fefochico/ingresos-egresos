@@ -72,22 +72,23 @@
         </div>    
     </div>
   </div>
-
-  <div class="col-12 p-5" *ngIf="ingresos > 0 || egresos > 0">
-      <div class="card card-statistics">
-        <div class="card-body">
-          <h1 class="card-title">Gráfica</h1>
-          <div style="margin-left: 20vw; margin-right: 20vw;">
-            <canvas baseChart
-            [labels]="doughnutChartLabels"
-            [datasets]="doughnutChartDatasets"
-            [options]="doughnutChartOptions"
-            [legend]="true"
-            [type]="'doughnut'">
-            </canvas>       
+  @if(ingresos > 0 || egresos > 0){
+    <div class="col-12 p-5">
+        <div class="card card-statistics">
+          <div class="card-body">
+            <h1 class="card-title">Gráfica</h1>
+            <div style="margin-left: 20vw; margin-right: 20vw;">
+              <canvas baseChart
+              [labels]="doughnutChartLabels"
+              [datasets]="doughnutChartDatasets"
+              [options]="doughnutChartOptions"
+              [legend]="true"
+              [type]="'doughnut'">
+              </canvas>       
+            </div>
           </div>
-         </div>
-      </div>
-  </div>
+        </div>
+    </div>
+  }
 
 </div>
