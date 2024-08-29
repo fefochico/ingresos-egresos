@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../app.reducer';
-import { isLoading, stopLoading } from '../../shared/ui.actions';
+import { isLoading, stopLoading } from '../../shared/redux/ui.actions';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -37,17 +37,10 @@ export class LoginComponent implements OnInit,OnDestroy{
   loginUsuario(){
     if(this.loginForm.invalid) return;
     this.store.dispatch(isLoading());
-    /*Swal.fire({
-      title: "Espere por favor",
-      didOpen: ()=>{
-        Swal.showLoading();
-      },
-    });*/
     const {email, password}= this.loginForm.value;
     this.authService.login(email, password)
     .then(credenciales=>{
       console.log(credenciales);
-      //Swal.close();
       this.store.dispatch(stopLoading())
       this.router.navigate(['/dashboard']);
     }).catch(err=> {

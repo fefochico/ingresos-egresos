@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 import { AppState } from '../../app.reducer';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { isLoading, stopLoading } from '../../shared/ui.actions';
+import { isLoading, stopLoading } from '../../shared/redux/ui.actions';
 
 @Component({
   selector: 'app-register',
@@ -37,12 +37,6 @@ export class RegisterComponent implements OnInit, OnDestroy{
 
   crearUsuario(){
     if(this.registroForm.invalid) return;
-    /*Swal.fire({
-      title: "Espere por favor",
-      didOpen: ()=>{
-        Swal.showLoading();
-      },
-    });*/
     this.store.dispatch(isLoading())
     const { nombre, correo, password} = this.registroForm.value;
     this.authService.crearUsuario(
@@ -51,7 +45,6 @@ export class RegisterComponent implements OnInit, OnDestroy{
       password
     ).then(credenciales=>{
       console.log(credenciales)
-      /*Swal.close();*/
       this.store.dispatch(stopLoading())
 
       this.router.navigate(['/login'])

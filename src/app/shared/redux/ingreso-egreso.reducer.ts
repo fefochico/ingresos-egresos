@@ -1,9 +1,15 @@
 import { Action, createReducer, on } from "@ngrx/store";
-import { IngresoEgreso } from "../../../models/ingreso-egreso";
+import { IngresoEgreso } from "../../models/ingreso-egreso";
 import { setItem, unSetItem } from "./ingreso-egreso.actions";
+import { AppState} from "../../app.reducer";
 
 export interface State{
     items: IngresoEgreso[];
+}
+
+//Crear extension de AppState ya que se carga en lazy Loading
+export interface AppStateWithIngreso extends AppState{
+    ingresoEgreso: State 
 }
 
 export const initialState: State = {

@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { AppState } from '../app.reducer';
 import { IngresoEgresoService } from '../services/ingreso-egreso.service';
-import * as ingresosEgresosActions from './pages/ingreso-egreso/ingreso-egreso.actions';
+import * as ingresosEgresosActions from '../shared/redux/ingreso-egreso.actions';
 
 @Component({
   selector: 'app-dashboard',
@@ -33,7 +33,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.userSubs.unsubscribe();
-    this.ingresosSubs.unsubscribe();
+    this.userSubs?.unsubscribe();
+    this.ingresosSubs?.unsubscribe();
   }
 }
