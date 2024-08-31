@@ -9,6 +9,8 @@ import { OrdenIngresoPipe } from '../pipes/orden-ingreso.pipe';
 import { NgChartsModule } from 'ng2-charts';
 import { SharedModule } from '../shared/shared.module';
 import { DashboardRoutesModule } from './dashboard.routes';
+import { StoreModule } from '@ngrx/store';
+import { ingresoEgresoReducer } from '../shared/redux/ingreso-egreso.reducer';
 
 
 @NgModule({
@@ -25,7 +27,8 @@ import { DashboardRoutesModule } from './dashboard.routes';
     ReactiveFormsModule,
     NgChartsModule,
     SharedModule,
-    DashboardRoutesModule
+    DashboardRoutesModule,
+    StoreModule.forFeature('ingresoEgreso',ingresoEgresoReducer)
   ],
 })
 export class DashboardModule { }

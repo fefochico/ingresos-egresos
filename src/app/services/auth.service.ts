@@ -45,6 +45,7 @@ export class AuthService implements OnDestroy{
         this._user=null;
         this._userSubcription?.unsubscribe();
         this.store.dispatch(authActions.unSetUser());
+        this.store.dispatch(ingresoEgresoAccions.unSetItem())
       }
     })
 
